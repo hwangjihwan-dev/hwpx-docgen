@@ -224,6 +224,53 @@ try {
 
 처음 실행할 때는 [`examples/minimal/README.md`](examples/minimal/README.md)의 명령을 그대로 따라 하세요.
 
+## 활용 예제
+
+`docgen`은 문서 하나의 값을 바꾸는 도구라기보다, 같은 HWPX 양식으로 여러 문서를 반복 생성할 때 유용합니다.
+
+| 상황 | 시작점 |
+| --- | --- |
+| 문서 한 건을 생성하고 동작을 확인 | [`examples/minimal`](examples/minimal) |
+| 여러 JSON 파일에서 문서를 일괄 생성 | [`examples/batch-reports`](examples/batch-reports) |
+| 업무 시스템·스크립트·스케줄러에서 호출 | 아래 명령줄 실행 예제와 일괄 생성 스크립트 조합 |
+
+### 여러 문서 일괄 생성
+
+템플릿 하나와 데이터 JSON 여러 개를 준비하면 사람별·부서별·기간별 HWPX 파일을 반복 생성할 수 있습니다.
+
+```text
+templates/report.hwpx
+data/team-a.json
+data/team-b.json
+data/team-c.json
+          ↓
+output/team-a.hwpx
+output/team-b.hwpx
+output/team-c.hwpx
+```
+
+실행 가능한 PowerShell 스크립트는 [`examples/batch-reports`](examples/batch-reports)에 있습니다.
+
+```powershell
+.\examples\batch-reports\generate.ps1
+```
+
+이 예제는 별도의 주간보고 프로젝트에 의존하지 않습니다. 같은 방식으로 보고서, 회의록, 안내문, 결과서 등 각 프로젝트의 HWPX 템플릿을 연결할 수 있습니다.
+
+### 자동화 시스템과 연결
+
+외부 시스템에서 JSON 파일을 만든 다음 `docgen`을 명령줄로 호출하면 됩니다.
+
+```powershell
+java -jar .\target\docgen-0.1.0.jar `
+  --template .\templates\report.hwpx `
+  --data .\data\report.json `
+  --output .\output\report.hwpx `
+  --force
+```
+
+따라서 PowerShell, Python, Java 애플리케이션, 작업 스케줄러, CI 작업 등에서 같은 생성 절차를 재사용할 수 있습니다.
+
 ## 문제 해결
 
 ### `mvn`을 찾을 수 없음
