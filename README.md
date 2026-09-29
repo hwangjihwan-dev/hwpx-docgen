@@ -75,7 +75,7 @@ try {
 
 ## 예제
 
-간단한 HWPX 예제와 토큰 데이터는 [`examples/minimal`](examples/minimal)에서 확인할 수 있습니다. `docgen`의 형식 처리 흐름을 확인하기 위한 예제이며, 실제 사무용 문서 템플릿 전체를 제공하는 것은 아닙니다.
+한/글에서 열 수 있는 최소 HWPX 패키지 예제와 토큰 데이터는 [`examples/minimal`](examples/minimal)에서 확인할 수 있습니다. `docgen`의 기본 처리 흐름을 확인하기 위한 예제이며, 실제 업무용 문서 템플릿 전체를 제공하는 것은 아닙니다.
 
 ## 보안 참고 사항
 
