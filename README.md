@@ -32,6 +32,8 @@ mvn -version
 
 ## 5분 만에 실행하기
 
+아래 캡처는 Windows PowerShell과 한/글 기준입니다. macOS, Linux, Git Bash에서는 명령줄 형식이 조금 다를 수 있습니다.
+
 ### 1. 저장소 받기
 
 PowerShell에서 작업할 폴더로 이동한 다음 저장소를 복제합니다.
@@ -40,6 +42,8 @@ PowerShell에서 작업할 폴더로 이동한 다음 저장소를 복제합니�
 git clone https://github.com/hwangjihwan-dev/hwpx-docgen.git
 cd hwpx-docgen
 ```
+
+![저장소를 복제하고 프로젝트 폴더로 이동한 화면](docs/images/quickstart/01-clone-and-enter.png)
 
 이미 복제한 저장소라면 다음처럼 최신 문서를 받을 수 있습니다.
 
@@ -56,6 +60,12 @@ git pull origin main
 mvn package
 ```
 
+![Maven 테스트가 실행되는 화면](docs/images/quickstart/02-maven-tests.png)
+
+![Maven 빌드가 성공한 화면](docs/images/quickstart/03-build-success.png)
+
+![target 폴더에 생성된 JAR 파일](docs/images/quickstart/04-generated-jar.png)
+
 성공하면 실행 가능한 JAR가 `target/docgen-0.1.0.jar`에 생성됩니다.
 
 ### 3. 최소 예제 실행하기
@@ -70,11 +80,19 @@ java -jar .\target\docgen-0.1.0.jar `
   --force
 ```
 
+![최소 예제를 실행한 화면](docs/images/quickstart/05-run-example.png)
+
 다음과 같은 메시지가 나오면 성공입니다.
 
 ```text
 Generated ...\output\example-result.hwpx (replacements=2)
 ```
+
+![입력 토큰 JSON 파일](docs/images/quickstart/06-token-json.png)
+
+![토큰이 들어 있는 HWPX 템플릿](docs/images/quickstart/07-template-in-hangul.png)
+
+![치환이 완료된 결과 HWPX](docs/images/quickstart/08-generated-result-in-hangul.png)
 
 생성된 `output\example-result.hwpx`를 한/글에서 열어 결과를 확인하세요. 출력 파일이 이미 있으면 `--force`를 사용해야 덮어쓸 수 있습니다.
 
