@@ -3,6 +3,9 @@ package io.github.docgen.examples;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -36,6 +39,26 @@ class ExampleFixtureTest {
             assertEquals(ZipEntry.STORED, first.getMethod());
             for (String entry : required) {
                 assertNotNull(zip.getEntry(entry), "Missing HWPX package entry: " + entry);
+            }
+        }
+    }
+
+    @Test
+    void templateDoesNotKeepStaleLayoutCachesForPlaceholders() throws Exception {
+        Path template = Paths.get("examples", "minimal", "template.hwpx");
+
+        try (ZipFile zip = new ZipFile(template.toFile())) {
+            ZipEntry sectionEntry = zip.getEntry("Contents/section0.xml");
+            assertNotNull(sectionEntry, "Missing HWPX section: Contents/section0.xml");
+            try (InputStream input = zip.getInputStream(sectionEntry)) {
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int read;
+                while ((read = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, read);
+                }
+                String section = new String(output.toByteArray(), StandardCharsets.UTF_8);
+                assertEquals(-1, section.indexOf("<hp:linesegarray"));
             }
         }
     }
