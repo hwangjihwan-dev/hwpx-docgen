@@ -66,6 +66,18 @@ class TokenReplacerTest {
     }
 
     @Test
+    void removesAllLineSegmentsAfterAnyReplacement() throws Exception {
+        Document document = document("<hp:p><hp:run><hp:t>{{title}}</hp:t></hp:run>"
+                + "<hp:linesegarray/></hp:p>"
+                + "<hp:p><hp:run><hp:t>Unchanged</hp:t></hp:run>"
+                + "<hp:linesegarray/></hp:p>");
+
+        new TokenReplacer().replace(document, singleton("title", "Replaced"), false);
+
+        assertEquals(0, document.getElementsByTagNameNS("*", "linesegarray").getLength());
+    }
+
+    @Test
     void failsOnMissingTokenByDefault() throws Exception {
         Document document = document("<hp:p><hp:run><hp:t>{{missing}}</hp:t></hp:run></hp:p>");
 

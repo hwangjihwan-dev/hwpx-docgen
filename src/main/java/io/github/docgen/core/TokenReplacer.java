@@ -74,6 +74,11 @@ public final class TokenReplacer {
                 writeParagraphText(paragraph, value);
             }
         }
+        if (replacementCount > 0) {
+            // Hancom validates paragraph layout caches across the section. Recompute them all
+            // after a text edit instead of leaving stale caches in untouched paragraphs.
+            removeLineSegments(document);
+        }
         return new ReplacementResult(replacementCount, missing);
     }
 
