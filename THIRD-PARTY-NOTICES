@@ -1,0 +1,23 @@
+docgen includes the following third-party dependencies at build or runtime:
+
+Jackson Databind 2.17.2
+  Copyright (c) FasterXML, LLC
+  License: Apache License 2.0
+  https://github.com/FasterXML/jackson
+
+Jackson Core 2.17.2
+  Copyright (c) FasterXML, LLC
+  License: Apache License 2.0
+  https://github.com/FasterXML/jackson-core
+
+Jackson Annotations 2.17.2
+  Copyright (c) FasterXML, LLC
+  License: Apache License 2.0
+  https://github.com/FasterXML/jackson-annotations
+
+JUnit Jupiter 5.10.2 (test scope)
+  Copyright (c) 2015-2024 junit.org
+  License: Eclipse Public License 2.0
+  https://junit.org/junit5/
+
+The corresponding license texts and notices are distributed by the dependency artifacts and are also available from the linked project repositories.
